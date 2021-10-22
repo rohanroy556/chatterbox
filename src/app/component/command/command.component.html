@@ -1,0 +1,50 @@
+<div [ngSwitch]="type">
+    <div class="container" *ngSwitchCase="commandType.Complete">
+        <p mat-line>Are you sure you want to complete the conversation?</p>
+        <div class="actions" mat-line>
+            <button mat-raised-button color="primary" (click)="send()">
+                <span class="label">{{ confirm[0] }}</span>
+                <mat-icon>done</mat-icon>
+            </button>
+            <button mat-raised-button (click)="cancel()">
+                <span class="label">{{ confirm[1] }}</span>
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="container" *ngSwitchCase="commandType.Date">
+        <div class="date-content">
+            <mat-radio-group [(ngModel)]="selectedDay">
+                <mat-radio-button *ngFor="let day of days" [value]="day">{{ day }}</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="actions" mat-line>
+            <button mat-icon-button color="primary" (click)="send()" [disabled]="!selectedDay">
+                <mat-icon>done</mat-icon>
+            </button>
+            <button mat-icon-button (click)="cancel()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+    <div class="container" *ngSwitchCase="commandType.Rate">
+        <div class="rating-content">
+            <p mat-line>Please rate your experience:</p>
+            <div class="rating" mat-line>
+                <ng-container *ngFor="let rating of ratings.reverse()">
+                    <input type="radio" name="rate" [id]="'star' + rating" [value]="rating"
+                        [(ngModel)]="selectedRate" />
+                    <label [for]="'star' + rating">★</label>
+                </ng-container>
+            </div>
+        </div>
+        <div class="actions" mat-line>
+            <button mat-icon-button color="primary" (click)="send()" [disabled]="!selectedRate">
+                <mat-icon>done</mat-icon>
+            </button>
+            <button mat-icon-button (click)="cancel()">
+                <mat-icon>close</mat-icon>
+            </button>
+        </div>
+    </div>
+</div>

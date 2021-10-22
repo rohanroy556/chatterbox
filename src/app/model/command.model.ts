@@ -7,5 +7,5 @@ export class Command {
 
 export class CommandPayload {
     type!: commandTypes;
-    data!: dateType | Array<number> | { lat: number, lng: number } | Array<commandTypes>
+    data!: dateType | Array<number> | { lat: number, lng: number } | Array<string>;
 }

@@ -1,4 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('~ol/ol.css');
+@import './app/_variables.scss';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    .mat-toolbar {
+        height: $headerHeight;
+    }
+    .chat-input .mat-form-field-appearance-outline {
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+            .mat-form-field-outline-start,
+            .mat-form-field-outline-gap,
+            .mat-form-field-outline-end {
+                background-color: $whiteColor;
+            }
+        }
+        .mat-form-field-infix {
+            padding: 0.8em 0 1em 0;
+        }
+    }
+}

@@ -1,0 +1,7 @@
+<ng-template [ngIf]="message">
+    <div class="meta" mat-line>
+        <span>{{ message.author | titlecase }}</span>
+        <span><sup>{{ message.timestamp | date: 'M/d/yy, h:mm a' }}</sup></span>
+    </div>
+    <div class="content" mat-line #content>{{ message.message }}</div>
+</ng-template>
