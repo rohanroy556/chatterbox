@@ -1,0 +1,68 @@
+<mat-tab-group>
+    <mat-tab label="Login">
+        <form mat-dialog-content class="container" [formGroup]="loginFormGroup">
+            <mat-form-field class="input">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required="true">
+                <mat-error *ngIf="loginEmail?.hasError('required')">Email is required</mat-error>
+                <mat-error *ngIf="loginEmail?.hasError('email')">Email must be valid</mat-error>
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" required="true">
+                <mat-error *ngIf="loginPassword?.hasError('required')">Password is required</mat-error>
+                <mat-error *ngIf="loginPassword?.hasError('minlength')">Password must have at least 5 characters
+                </mat-error>
+            </mat-form-field>
+        </form>
+        <div class="tools" mat-dialog-actions>
+            <button mat-raised-button color="primary" [disabled]="!loginFormGroup.valid"
+                (click)="login()">Login</button>
+        </div>
+    </mat-tab>
+    <mat-tab label="Sign-Up">
+        <form mat-dialog-content class="container" [formGroup]="signupFormGroup">
+            <mat-form-field class="input">
+                <mat-label>Email</mat-label>
+                <input matInput formControlName="email" required="true">
+                <mat-error *ngIf="signupEmail?.hasError('required')">Email is required</mat-error>
+                <mat-error *ngIf="signupEmail?.hasError('email')">Email must be valid</mat-error>
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" formControlName="password" required="true">
+                <mat-error *ngIf="signupPassword?.hasError('required')">Password is required</mat-error>
+                <mat-error *ngIf="signupPassword?.hasError('minlength')">Password must have at least 5 characters</mat-error>
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Confirm Password</mat-label>
+                <input matInput type="password" formControlName="confirmPassword" required="true">
+                <mat-error *ngIf="signupConfirmPassword?.hasError('required')">Please confirm your password</mat-error>
+                <mat-error *ngIf="signupConfirmPassword?.hasError('passwordMismatch')">Passwords don't match</mat-error>
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name" required="true">
+                <mat-error *ngIf="signupName?.hasError('required')">Name is required</mat-error>
+            </mat-form-field>
+        </form>
+        <!-- <div mat-dialog-content class="container">
+            <mat-form-field class="input">
+                <mat-label>Email</mat-label>
+                <input matInput [(ngModel)]="email" required="true">
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Password</mat-label>
+                <input matInput [(ngModel)]="password" type="password" required="true">
+            </mat-form-field>
+            <mat-form-field class="input">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="name" required="true">
+            </mat-form-field>
+        </div> -->
+        <div class="tools" mat-dialog-actions>
+            <button mat-raised-button color="primary" [disabled]="!signupFormGroup.valid"
+                (click)="signup()">Sign-Up</button>
+        </div>
+    </mat-tab>
+</mat-tab-group>

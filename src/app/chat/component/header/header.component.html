@@ -1,0 +1,6 @@
+<mat-toolbar color="primary">
+    <span>{{ title }}</span>
+    <button mat-mini-fab color="primary" (click)="authService.logout()" matTooltip="LOGOUT" *ngIf="!!authService.token">
+        <mat-icon>logout</mat-icon>
+    </button>
+</mat-toolbar>

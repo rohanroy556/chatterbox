@@ -1,0 +1,63 @@
+@import '../../../_variables.scss';
+
+.chat-container {
+    background-color: $backgroundColor;
+    display: flex;
+    flex-direction: column;
+    height: $containerHeight;
+    .chat-list {
+        padding: 30px;
+        height: calc(100% - #{ $chatInputHeight });
+        overflow-y: auto;
+        .mat-list {
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            border: 0.5px solid #dbdbdb;
+            border-radius: 5px;
+            overflow-wrap: break-word;
+            min-width: 120px;
+            width: 48%;
+            height: 100%;
+            padding: 10px 0;
+            margin-bottom: 5px;
+            &.align-left {
+                align-self: flex-start;
+                background-color: $whiteColor;
+            }
+            &.align-right {
+                align-self: flex-end;
+                background-color: $primaryColor;
+            }
+            app-message, app-command {
+                width: 100%;
+            }
+        }
+    }
+    .chat-input {
+        background-color: $primaryColor;
+        border-top: 1px solid $borderColor;
+        height: $chatInputHeight;
+        display: flex;
+        .mat-form-field {
+            width: 100%;
+            margin: 0 5px 0 20px;
+        }
+        .mat-form-field-wrapper {
+            padding-bottom: 0 !important;
+        }
+        .mat-raised-button {
+            height: 40px;
+            min-width: 150px;
+            margin: auto 20px auto 5px;
+            padding: 0 10px;
+            text-align: center;
+            overflow: hidden;
+            white-space: nowrap;
+            .text {
+                padding: 0 5px;
+            }
+        }
+    }
+}

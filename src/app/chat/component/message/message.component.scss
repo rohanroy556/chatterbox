@@ -1,0 +1,16 @@
+@import '../../../_variables.scss';
+
+.meta {
+    display: flex !important;
+    justify-content: space-between;
+    font-size: 14px;
+    font-weight: bold;
+    color: $darkColor;
+    margin-bottom: 7px;
+    sup {
+        opacity: 0.8;
+    }
+}
+.content {
+    white-space: normal !important;
+}

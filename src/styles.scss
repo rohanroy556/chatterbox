@@ -1,13 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('~ol/ol.css');
 @import './app/_variables.scss';
 
 html, body { height: 100%; }
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    .mat-dialog-container {
+        padding: 0;
+    }
+    .mat-tab-header {
+        background: $primaryColor;
+    }
     .mat-toolbar {
+        background-color: $primaryColor !important;
+        border-bottom: 1px solid $borderColor;
+        color: $darkColor !important;
         height: $headerHeight;
+        display: flex;
+        justify-content: space-between;
+    }
+    .message-snackbar {
+        background-color: $darkColor;
+        z-index: 1000;
+        span {
+            font-size: 16px !important;
+        }
+        button {
+            font-size: 16px !important;
+        }
     }
     .chat-input .mat-form-field-appearance-outline {
         .mat-form-field-wrapper {
@@ -22,4 +42,15 @@ body {
             padding: 0.8em 0 1em 0;
         }
     }
+}
+
+::-webkit-scrollbar {
+    height: 4px !important;
+    width: 6px !important;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1 !important;
+}
+::-webkit-scrollbar-thumb {
+    background: #c4c4c4 !important;
 }

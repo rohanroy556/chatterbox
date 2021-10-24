@@ -1,30 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 
 import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './material/material.module';
+import { ChatModule } from './chat';
 import { AppComponent } from './app.component';
-import { ChatComponent, CommandComponent, HeaderComponent, MessageComponent } from './component';
+import { AuthModule } from './auth';
 
 const config: SocketIoConfig = { url: 'https://demo-chat-server.on.ag/', options: {} };
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ChatComponent,
-    HeaderComponent,
-    MessageComponent,
-    CommandComponent
+    AppComponent
   ],
   imports: [
     AppRoutingModule,
+    AuthModule,
     BrowserAnimationsModule,
     BrowserModule,
-    FormsModule,
-    MaterialModule,
+    ChatModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [],

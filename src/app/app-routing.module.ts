@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ChatComponent } from './component';
+import { AuthGuard } from './auth';
 
 const routes: Routes = [
-  { path: 'chat', component: ChatComponent },
+  { path: 'chat', canLoad: [AuthGuard], loadChildren: () => import('./chat').then(m => m.ChatModule) },
   { path: '', redirectTo: '/chat', pathMatch: 'full' }
 ];
 
