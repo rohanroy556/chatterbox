@@ -1,4 +1,4 @@
-import { commandTypes, dateType } from "./type.model";
+import { commandTypes } from "./type.model";
 
 export class Command {
     author!: string;
@@ -7,5 +7,5 @@ export class Command {
 
 export class CommandPayload {
     type!: commandTypes;
-    data!: dateType | Array<number> | { lat: number, lng: number } | Array<string>;
+    data!: string | Array<number> | { lat: number, lng: number } | Array<string>;
 }

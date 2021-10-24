@@ -1,7 +1,6 @@
 export type eventNames = 'message' | 'command';
 export type chatTypes = 'message' | 'map';
 export type commandTypes = 'date' | 'map' | 'rate' | 'complete';
-export type dateType = `${ number }-${ number }-${ number }T${ number }:${ number }:${ number }.${ number }Z`
 
 export enum ChatType {
     Map = 'map',

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/auth';
 import { Command, CommandType, DAYS } from 'src/app/model';
 
 @Component({
@@ -9,20 +10,16 @@ import { Command, CommandType, DAYS } from 'src/app/model';
 export class CommandComponent implements OnInit {
   @Input() command!: Command;
   @Output() emitMessage: EventEmitter<string | boolean> = new EventEmitter();
-  name: string = 'Ronny';
   confirm: Array<string> = ['Yes', 'No'];
   days: Array<string> = [];
   selectedDay: string = '';
   ratings: Array<number> = [1, 2, 3, 4, 5];
   selectedRate: number = 0;
-  get type() {
-    return this.command.command?.type;
-  }
-  get commandType() {
-    return CommandType;
-  }
+  get name() { return this.authService.name || ''; }
+  get type() { return this.command.command?.type; }
+  get commandType() { return CommandType; }
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
     const data = this.command.command?.data;
