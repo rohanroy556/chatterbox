@@ -31,11 +31,11 @@
         <div class="rating-content">
             <p mat-line>Please rate your experience:</p>
             <div class="rating" mat-line>
-                <ng-container *ngFor="let rating of ratings.reverse()">
+                <span *ngFor="let rating of ratings.reverse()" [ngClass]="{ selected: rating == selectedRate }">
                     <input type="radio" name="rate" [id]="'star' + rating" [value]="rating"
                         [(ngModel)]="selectedRate" />
                     <label [for]="'star' + rating">★</label>
-                </ng-container>
+                </span>
             </div>
         </div>
         <div class="actions" mat-line>

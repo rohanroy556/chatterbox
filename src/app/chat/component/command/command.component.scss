@@ -28,22 +28,17 @@
             display: flex;
             align-items: center;
         }
-        &:not(:checked) label {
-            width: 1em;
+        &:not(:checked) span {
             overflow: hidden;
             white-space: nowrap;
             cursor: pointer;
             font-size: 30px;
             color: rgba(0, 0, 0, 0.5);
-            &:hover, &:hover ~ label {
+            &:hover, &:hover ~ span {
                 color: #deb217;  
             }
         }
-        input:checked + label:hover,
-        input:checked + label:hover ~ label,
-        input:checked ~ label:hover,
-        input:checked ~ label:hover ~ label,
-        label:hover ~ input:checked ~ label {
+        span.selected ~ span {
             color: #c59b08;
         }
     }
