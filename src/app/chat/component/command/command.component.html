@@ -31,10 +31,9 @@
         <div class="rating-content">
             <p mat-line>Please rate your experience:</p>
             <div class="rating" mat-line>
-                <span *ngFor="let rating of ratings.reverse()" [ngClass]="{ selected: rating == selectedRate }">
-                    <input type="radio" name="rate" [id]="'star' + rating" [value]="rating"
-                        [(ngModel)]="selectedRate" />
-                    <label [for]="'star' + rating">★</label>
+                <span *ngFor="let rating of ratings.slice().reverse()" [ngClass]="{ selected: rating == selectedRate }">
+                    <input type="radio" name="rate" [id]="'star' + rating" [value]="rating" [(ngModel)]="selectedRate" />
+                    <label [for]="'star' + rating" [matTooltip]="'RATE ' + rating">★</label>
                 </span>
             </div>
         </div>
