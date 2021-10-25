@@ -34,7 +34,7 @@
                 <ng-container *ngFor="let rating of ratings.reverse()">
                     <input type="radio" name="rate" [id]="'star' + rating" [value]="rating"
                         [(ngModel)]="selectedRate" />
-                    <label [for]="'star' + rating" [matTooltip]="'Rate ' + rating | uppercase">★</label>
+                    <label [for]="'star' + rating">★</label>
                 </ng-container>
             </div>
         </div>
