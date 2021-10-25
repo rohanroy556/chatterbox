@@ -11,6 +11,9 @@ const mockAuthService = {
   logout: () => {}
 };
 
+/**
+ * Unit test cases for CommandComponent.
+ */
 describe('CommandComponent', () => {
   let component: CommandComponent;
   let fixture: ComponentFixture<CommandComponent>;

@@ -42,6 +42,20 @@ body {
             padding: 0.8em 0 1em 0;
         }
     }
+    .loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        background: $primaryColor;
+        width: 100% !important;
+        height: 100% !important;
+        z-index: 1000;
+        svg {
+            position: relative;
+        }
+    }
 }
 
 ::-webkit-scrollbar {

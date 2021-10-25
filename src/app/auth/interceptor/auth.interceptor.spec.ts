@@ -10,6 +10,9 @@ const mockAuthService = {
   isAuthenticated: of(true)
 };
 
+/**
+ * Unit test cases for AuthInterceptor.
+ */
 describe('AuthInterceptor', () => {
   let http: HttpClient;
   let httpMock: HttpTestingController;

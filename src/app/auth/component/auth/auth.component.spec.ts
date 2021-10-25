@@ -10,8 +10,8 @@ import { User } from '../../auth.model';
 import { AuthComponent } from './auth.component';
 
 const commonService = {
-  showAppLoader: false,
-  durationMessage: () => {}
+  loader: false,
+  durationMessage: () => { }
 }
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmRvbUBleGFtcGxlLmNvbSIsIm5hbWUiOiJKb2huIERvZSJ9.h1rztIET9qhX61oMbq7Fd6pnvnKn7NnDrBNZftiIY28';
 const mockUser: User = { _id: 'id', email: 'random@example.com', token, name: 'John Doe' };
@@ -22,9 +22,12 @@ const mockData = {
 }
 
 const mockMatDialogRef = {
-  close: () => {}
+  close: () => { }
 };
 
+/**
+ * Unit test cases for AuthComponent.
+ */
 describe('AuthComponent', () => {
   let component: AuthComponent;
   let fixture: ComponentFixture<AuthComponent>;
@@ -32,20 +35,20 @@ describe('AuthComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthComponent ],
+      declarations: [AuthComponent],
       imports: [
         BrowserAnimationsModule,
         FormsModule,
         MaterialModule,
         ReactiveFormsModule
       ],
-      providers:[
+      providers: [
         { provide: CommonService, useValue: commonService },
         { provide: MatDialogRef, useValue: mockMatDialogRef },
         { provide: MAT_DIALOG_DATA, useValue: mockData }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

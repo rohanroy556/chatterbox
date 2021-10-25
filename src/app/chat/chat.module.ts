@@ -5,10 +5,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { MaterialModule } from '../material/material.module';
 import { ChatComponent, HeaderComponent, MessageComponent, CommandComponent } from './component';
 
+/**
+ * Route to chat component loaded as children of chat module.
+ */
 const routes: Routes = [
   { path: '', component: ChatComponent }
 ];
 
+/**
+ * Chat Module containing necessary components needed for chatting.
+ */
 @NgModule({
   declarations: [
     ChatComponent,

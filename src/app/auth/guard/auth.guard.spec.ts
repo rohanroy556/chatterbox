@@ -9,6 +9,9 @@ const mockAuthService = {
   isAuthenticated: of(true)
 };
 
+/**
+ * Unit test cases for AuthGuard.
+ */
 describe('AuthGuard', () => {
   let guard: AuthGuard;
 

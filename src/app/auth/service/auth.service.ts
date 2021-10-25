@@ -11,12 +11,18 @@ import { AuthComponent } from '../component';
 
 const jwtHelper = new JwtHelperService();
 
+/**
+ * Authentication Service for the entire app.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 	baseUrl: string = window.location.origin;
 
+  /**
+   * User object stored and retrieved from Session Storage of the browser.
+   */
   _user: User | null = null;
   get user() {
     this._user = this._user ? this._user : this.id && this.email && this.name && this.token
@@ -55,9 +61,15 @@ export class AuthService {
     token ? sessionStorage.setItem(StorageKeys.Token, token) : sessionStorage.removeItem(StorageKeys.Token);
   }
 
+  /**
+   * JWT token is valid or not.
+   */
   get hasValidToken(): boolean {
     return this.token ? !jwtHelper.isTokenExpired(this.token) : false;
   }
+  /**
+   * User is authenticated by validating the JWT token.
+   */
   get isAuthenticated(): Observable<boolean> {
     return this.hasValidToken ? of(this.hasValidToken) : this.validateToken();
   }
@@ -69,8 +81,13 @@ export class AuthService {
     private router: Router
   ) { }
 
+  /**
+   * Validate the JWT token by hitting the Node API.
+   * This is done to validate the signature of the token.
+   * @returns a boolean observable indicating the token is valid or not
+   */
   validateToken(): Observable<boolean> {
-    this.commonService.showAppLoader = true;
+    this.commonService.loader = true;
     if (!this.token) {
       this.authenticate();
       return of(false);
@@ -80,51 +97,71 @@ export class AuthService {
       { headers: { Authorization: `Bearer ` + this.token } }
     ).pipe(
       map(() => {
-        this.commonService.showAppLoader = false;
+        this.commonService.loader = false;
         return true;
       }),
       catchError(error => {
-        this.commonService.showAppLoader = false;
+        this.commonService.loader = false;
         this.authenticate();
         return of(false);
       })
     );
   }
 
+  /**
+   * Login an existing user.
+   * Retrieve a user object that contains name, email and JWT token.
+   * @param email of the user
+   * @param password of the user
+   * @returns a user object observable
+   */
   login(email: string, password: string): Observable<User> {
     if (!email || !password) return throwError('Email and Password is required');
-    this.commonService.showAppLoader = true;
+    this.commonService.loader = true;
     return this.http.post<User>(
       this.baseUrl + '/user/login', { email, password }
     ).pipe(
       map(user => {
-        this.commonService.showAppLoader = false;
+        this.commonService.loader = false;
         return user;
       }),
       catchError(error => {
-        this.commonService.showAppLoader = false;
+        this.commonService.loader = false;
         return throwError(error);
       })
     );
   }
 
+  /**
+   * Sign-Up a new user.
+   * Retrieve a user object that contains name, email and JWT token.
+   * @param email of the user
+   * @param password of the user
+   * @param name of the user
+   * @returns a user object observable
+   */
   signup(email: string, password: string, name: string): Observable<User> {
     if (!email || !password || !name) return throwError('Email, Password and Name is required');
-    this.commonService.showAppLoader = true;
+    this.commonService.loader = true;
     return this.http.post<User>(
       this.baseUrl + '/user/signup', { email, password, name }
     ).pipe(
       map(user => {
-        this.commonService.showAppLoader = false;
+        this.commonService.loader = false;
         return user;
       }),
       catchError(error => {
-        this.commonService.showAppLoader = false;
+        this.commonService.loader = false;
         return throwError(error);
       })
     );
   }
 
+  /**
+   * Open a dialop window two tabs: Login and Sign-Up.
+   * Dialog returns a user object after it is closed.
+   * Note: login() and signup() functions injected as data to avoid circular dependency.
+   */
   authenticate() {
     this.clear();
     this.dialog.open(AuthComponent, {
@@ -144,12 +181,18 @@ export class AuthService {
     });
   }
 
+  /**
+   * Assign null to existing user object and clear all storages
+   */
   clear() {
     this.user = null;
     sessionStorage.clear();
     localStorage.clear();
   }
 
+  /**
+   * Logout from application and emit a message.
+   */
   logout() {
     this.authenticate();
     this.commonService.durationMessage(`Logged Out!`);

@@ -4,16 +4,23 @@ import { AuthService } from 'src/app/auth';
 import { Command, CommandType, Message } from 'src/app/model';
 import { ChatService } from 'src/app/service';
 
+/**
+ * Chat Component is used for the actual chatting. 
+ */
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
+  /**
+   * Element references to the template using variables.
+   */
   @ViewChild('chatList') chatListElement!: ElementRef;
   @ViewChild('chatInput') chatInputElement!: ElementRef;
   @ViewChildren(MatListItem) matListItems!: QueryList<MatListItem>;
   @ViewChild('map') mapElement!: ElementRef;
+
   chats: Array<Message> = [];
   command: Command | null = null;
   message: string = '';
@@ -22,6 +29,10 @@ export class ChatComponent implements OnInit {
 
   constructor(private authService: AuthService, private chatService: ChatService) { }
 
+  /**
+   * When component is initialized, subscribe to command and message events.
+   * These will be events emitted from the server.
+   */
   ngOnInit(): void {
     this.chatService.message$.subscribe(message => {
       message.timestamp = new Date();
@@ -42,15 +53,27 @@ export class ChatComponent implements OnInit {
     })
   }
 
+  /**
+   * After view is initialized in always scroll down to the bottom of chat list.
+   * Only scroll down when chat list is changed.
+   */
   ngAfterViewInit() {
     this.scrollToBottom();
     this.matListItems.changes.subscribe(() => this.scrollToBottom());
   }
 
+  /**
+   * Send command to the server.
+   */
   sendCommand() {
     this.chatService.sendCommand();
   }
 
+  /**
+   * After each command is processed, emit a message to the server,
+   * or logout in case of Yes confirmation to Complete command type.
+   * @param text string message or boolean
+   */
   sendCommandMessage(text: string | boolean) {
     if (typeof text == 'string') {
       const message = { author: this.name, message: text, timestamp: new Date() };
@@ -64,6 +87,9 @@ export class ChatComponent implements OnInit {
     this.command = null;
   }
 
+  /**
+   * Send message to the server.
+   */
   sendMessage() {
     if (this.message) {
       const message = { author: this.name, message: this.message, timestamp: new Date() };
@@ -74,6 +100,9 @@ export class ChatComponent implements OnInit {
     }
   }
 
+  /**
+   * Scroll to the bottom of the chat list in a smooth manner.
+   */
   scrollToBottom() {
     if (this.chatListElement?.nativeElement) {
       this.chatListElement.nativeElement.scrollTo({

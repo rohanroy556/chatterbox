@@ -24,6 +24,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+/**
+ * All Material Modules exported together for use in the entire app.
+ */
 @NgModule({
   exports: [
     A11yModule,

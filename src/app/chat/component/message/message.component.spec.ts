@@ -3,6 +3,9 @@ import { Message } from 'src/app/model';
 import { MessageComponent } from './message.component';
 import { MapBrowserEvent } from 'ol';
 
+/**
+ * Unit test cases for MessageComponent.
+ */
 describe('MessageComponent', () => {
   let component: MessageComponent;
   let fixture: ComponentFixture<MessageComponent>;

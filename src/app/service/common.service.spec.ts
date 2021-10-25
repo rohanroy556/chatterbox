@@ -5,6 +5,9 @@ import { MaterialModule } from 'src/app/material/material.module';
 import { CommonService } from './common.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+/**
+ * Unit Test cases for CommonService.
+ */
 describe('CommonService', () => {
   let service: CommonService;
 

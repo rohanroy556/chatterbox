@@ -1,3 +1,6 @@
+/**
+ * Setting application wide constants, which can be loaded from environment or has defaults.
+ */
 const path = require('path');
 const PORT = process.env.PORT || 8080;
 const ROOT_DIR = path.join(__dirname + '../../../');

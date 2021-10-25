@@ -2,14 +2,24 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AuthService } from 'src/app/auth';
 import { Command, CommandType, DAYS } from 'src/app/model';
 
+/**
+ * Component Component is used to process commands sent from the server.
+ */
 @Component({
   selector: 'app-command',
   templateUrl: './command.component.html',
   styleUrls: ['./command.component.scss']
 })
 export class CommandComponent implements OnInit {
+  /**
+   * Command input from parent component
+   */
   @Input() command!: Command;
+  /**
+   * Message event to be emitted to parent component.
+   */
   @Output() emitMessage: EventEmitter<string | boolean> = new EventEmitter();
+
   confirm: Array<string> = ['Yes', 'No'];
   days: Array<string> = [];
   selectedDay: string = '';
@@ -21,6 +31,10 @@ export class CommandComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+  /**
+   * Initialize data to be rendered in the template.
+   * Different command types have different data types and is process respectively.
+   */
   ngOnInit(): void {
     const data = this.command.command?.data;
     if (this.type === CommandType.Complete && Array.isArray(data)) {
@@ -38,12 +52,18 @@ export class CommandComponent implements OnInit {
     }
   }
 
+  /**
+   * Emit message event with respect to command type and the selection made by the user.
+   */
   send() {
     this.emitMessage.emit(this.type === CommandType.Complete ? true
       : this.type === CommandType.Date ? this.name + ' ' + this.selectedDay
       : this.type === CommandType.Rate ? `${ this.name } has rated this conversion a ${ this.selectedRate }.` : false);
   }
 
+  /**
+   * Emit false in case user has cancelled and don't want to emit any messages.
+   */
   cancel() {
     this.emitMessage.emit(false);
   }

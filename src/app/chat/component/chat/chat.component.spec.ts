@@ -33,6 +33,9 @@ const mockChatService = {
   sendMessage: () => {}
 }
 
+/**
+ * Unit test cases for ChatComponent.
+ */
 describe('ChatComponent', () => {
   let component: ChatComponent;
   let fixture: ComponentFixture<ChatComponent>;

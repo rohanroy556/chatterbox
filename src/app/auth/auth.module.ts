@@ -9,6 +9,10 @@ import { AuthService } from './service';
 import { AuthComponent } from './component';
 import { MaterialModule } from '../material/material.module';
 
+/**
+ * Authentication Module for the application.
+ * Route Guard, Intercept HTTP requests, Authenticate User and Check JWT token.
+ */
 @NgModule({
   declarations: [
     AuthComponent

@@ -5,12 +5,18 @@ import { Observable } from 'rxjs';
 import { CommonService } from 'src/app/service';
 import { User } from '../../auth.model';
 
+/**
+ * Component to login and signup users.
+ */
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
+  /**
+   * Define form groups and set validators for the fields
+   */
   loginFormGroup: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(5)]]
@@ -43,11 +49,17 @@ export class AuthComponent implements OnInit {
     },
     private formBuilder: FormBuilder
   ) { }
-
+  
+  /**
+   * Set validator for checking if password and confirm password match during signup.
+   */
   ngOnInit(): void {
     this.signupConfirmPassword?.setValidators([this.passwordMatchValidator(this.signupFormGroup)])
   }
-
+  
+  /**
+   * Login using email and password. Only valid login form is allowed to run this function.
+   */
   login() {
     if (!this.loginFormGroup.valid) return;
     this.data.login(this.loginEmail?.value, this.loginPassword?.value).subscribe(
@@ -56,6 +68,9 @@ export class AuthComponent implements OnInit {
     );
   }
 
+  /**
+   * Signup using email, password and name. Only valid signup form is allowed to run this function.
+   */
   signup() {
     if (!this.signupFormGroup.valid) return;
     this.data.signup(this.signupEmail?.value, this.signupPassword?.value, this.signupName?.value).subscribe(

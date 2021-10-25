@@ -1,8 +1,18 @@
 const passport = require('passport');
 const { User } = require('../model');
 
+/**
+ * User Service to add new user or fetch an existing user.
+ */
 const UserService = {};
 
+/**
+ * Add a new user to the database.
+ * @param {string} email of the user
+ * @param {string} password to be hashed
+ * @param {string} name of the user
+ * @returns {object} user object along with JWT token
+ */
 UserService.post = (email, password, name) => {
     return new Promise((resolve, reject) => {
         if (!email || !password || !name) {
@@ -20,6 +30,14 @@ UserService.post = (email, password, name) => {
     });
 };
 
+/**
+ * Fetch an existing user from the database.
+ * Authenticate the credentials using passport.
+ * @param {object} request express request object
+ * @param {object} response express response object
+ * @param {function} next callback function to the next middleware
+ * @returns {object} user object along with JWT token
+ */
 UserService.get = (req, res, next) => {
     return new Promise((resolve, reject) => {
         const { body: { email, password } } = req;

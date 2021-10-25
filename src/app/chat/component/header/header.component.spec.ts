@@ -9,6 +9,9 @@ const mockAuthService = {
   logout: () => {}
 };
 
+/**
+ * Unit test cases for HeaderComponent.
+ */
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;

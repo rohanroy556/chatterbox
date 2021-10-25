@@ -5,6 +5,9 @@ import { ChatService } from './chat.service';
 
 const config: SocketIoConfig = { url: 'https://demo-chat-server.on.ag/', options: {} };
 
+/**
+ * Unit Test cases for ChatService.
+ */
 describe('ChatService', () => {
   let service: ChatService;
   let socket: Socket;

@@ -10,6 +10,9 @@ const mockAuthService = {
   logout: () => {}
 };
 
+/**
+ * Unit Test cases for AppComponent.
+ */
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({

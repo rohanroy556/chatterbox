@@ -13,7 +13,7 @@ import { AuthComponent } from '../component';
 import { AuthService } from './auth.service';
 
 const commonService = {
-  showAppLoader: false,
+  loader: false,
   durationMessage: (message: string, duration?: number, h?: any, v?: any) => {}
 }
 const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJhbmRvbUBleGFtcGxlLmNvbSIsIm5hbWUiOiJKb2huIERvZSJ9.h1rztIET9qhX61oMbq7Fd6pnvnKn7NnDrBNZftiIY28';
@@ -29,6 +29,9 @@ class MockAuthComponent {
   constructor() {}
 }
 
+/**
+ * Unit test cases for AuthService.
+ */
 describe('AuthService', () => {
   let service: AuthService;
   let httpMock: HttpTestingController;
