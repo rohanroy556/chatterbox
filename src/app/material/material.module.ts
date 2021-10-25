@@ -7,7 +7,6 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CdkStepperModule } from '@angular/cdk/stepper';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -51,8 +50,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule,
     MatTabsModule,
     MatToolbarModule,
-    MatTooltipModule,
-    FlexLayoutModule
+    MatTooltipModule
   ],
   providers: []
 })

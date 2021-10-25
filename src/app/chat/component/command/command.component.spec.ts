@@ -142,6 +142,7 @@ describe('CommandComponent', () => {
     mockAuthService.name = '';
     fixture.detectChanges();
     expect(component.name).toBe('');
+    mockAuthService.name = 'John Doe';
   });
 
   it('should emit message as false for invalid commands', () => {
